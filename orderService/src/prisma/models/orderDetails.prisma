@@ -1,0 +1,22 @@
+model OrderDetails {
+  id               Int      @id @default(autoincrement())
+  orderId          Int
+  branchId         Int
+  productId        Int
+  productVariantId Int
+  categoryId       Int
+  subCategoryId    Int
+  deliveryTypeId   Int
+  price            Int
+  orderStatusId    Int
+  trackingId       String
+  trackingLink     String
+  accepted         Boolean
+  quantity         Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  deletedAt        DateTime @default(now())
+  @@index([orderStatusId])
+}
+
+

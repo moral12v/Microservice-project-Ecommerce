@@ -1,0 +1,30 @@
+# Coverage reports
+coverage
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+build/**/*
+build
+
+# Ignore yarn.lock and package-lock.json
+yarn.lock
+package-lock.json
+
+# Log files
+*.log
+c2b-user-services.log
+c2b-user-services-error.log

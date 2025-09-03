@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc AuthenticateUser (AuthRequest) returns (AuthResponse);
+  rpc AuthenticateAggregator (VendorAuthRequest) returns (VendorAuthResponse);
+  rpc GetCustomerDetailsById (CustomerDetailsRequest) returns (CustomerDetailsResponse);
+  rpc GetAddressDetailsById (AddressDetailsRequest) returns (AddressDetailsResponse);  
+  rpc getDeviceDetailsByUserId (DeviceDetailsRequest) returns (DeviceDetailsResponse);
+}
+
+message AuthRequest {
+  string token = 1;
+  string traceId = 2;
+  string spanId = 3;
+}
+
+message AuthResponse {
+  bool success = 1;
+  string message = 2;
+  CustomerData customerData = 3;
+  bool isValid = 4;
+}
+
+message CustomerData {
+  string _id = 1;
+  string fullName = 2;
+  string mobile = 3;
+}
+
+message VendorAuthRequest {
+  string token = 1;
+  string traceId = 2;
+  string spanId = 3;
+}
+
+message VendorAuthResponse {
+  bool success = 1;
+  string message = 2;
+  VendorData vendorData = 3;
+  bool isValid = 4;
+}
+
+message VendorData {
+  string _id = 1;
+  string fullName = 2;
+  string mobile = 3;
+}
+
+message CustomerDetailsRequest {
+  string customerId = 1;
+  string traceId = 2;
+  string spanId = 3;
+}
+
+message CustomerDetailsResponse {
+  bool success = 1;
+  string message = 2;
+  CustomerData customerData = 3;
+  string traceId = 4;
+  string spanId = 5;
+}
+
+message AddressDetailsRequest {
+  string addressId = 1;
+  string traceId = 2;
+  string spanId = 3;
+}
+
+message AddressDetailsResponse {
+  bool success = 1;
+  string message = 2;
+  AddressData addressData = 3;
+  string traceId = 4;
+  string spanId = 5;
+}
+
+message AddressData { 
+  string _id = 1;
+  string customerId = 2;
+  string addType = 3;
+  string add1 = 4;
+  string add2 = 5;
+  string city = 6;
+  string state = 7;
+  string country = 8;
+  string area = 9;
+  string landmark = 10;
+  string fullName = 11;
+  string mobile = 12;
+  double lat = 13;
+  double lng = 14;
+  string zipcode = 15;
+}
+
+message DeviceDetailsRequest {
+  string customerId = 1;  
+  string traceId = 2; 
+  string spanId = 3;   
+}
+
+message DeviceDetailsResponse {
+  bool success = 1;   
+  string message = 2;  
+  string deviceId = 3; 
+  string traceId = 4;  
+  string spanId = 5;   
+}

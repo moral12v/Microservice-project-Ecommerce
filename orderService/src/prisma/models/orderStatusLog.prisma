@@ -1,0 +1,11 @@
+model OrderStatusLog {
+  id              Int       @id @default(autoincrement())
+  orderDetailsId  Int
+  statusId        Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime 
+}
+
+
+

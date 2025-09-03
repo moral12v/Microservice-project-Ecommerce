@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .loading {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #343b45;
+        border-bottom: 4px solid #343b45;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        padding: 2rem;
+      }
+      .loaderContainer {
+        position: relative;
+      }
+      .loaderImag {
+        width: 100%;
+        -webkit-animation: spin1 2s linear infinite;
+        animation: spin1 2s linear infinite;
+      }
+      .loaderImag img {
+        width: 100%;
+      }
+      .rightarrow {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      .leftarrow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      .paymentHeading {
+        font-size: 28px;
+      }
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes spin1 {
+        0% {
+          -webkit-transform: rotate(360deg);
+        }
+        100% {
+          -webkit-transform: rotate(0deg);
+        }
+      }
+      @keyframes spin1 {
+        0% {
+          transform: rotate(360deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="loader loaderContainer">
+        <div class="loaderImag">
+          <img src="https://admin.closetobuy.com/icons/small-logo.png" alt="Loading" />
+        </div>
+      </div>
+      <p class="paymentHeading">Payment Confirming...</p>
+    </div>
+  </body>
+</html>

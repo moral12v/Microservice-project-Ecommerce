@@ -1,0 +1,10 @@
+
+model orderService {
+  id                   Int       @id @default(autoincrement())
+  orderId              Int
+  sheduleOrderDate     DateTime  @default(now())
+  userId               Int
+  addressTypeId        Int
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}

@@ -1,0 +1,21 @@
+export const KAFKA_TOPICS = {
+  AUTH_REQUEST: "auth-request",
+  AUTH_RESPONSE: "auth-response",
+  MERCHANT_REQUEST: "merchant-request",
+  MERCHANT_RESPONSE: "merchant-response",
+  PRODUCT_DETAILS_REQUEST: "product-details-request",
+  PRODUCT_DETAILS_RESPONSE: "product-details-response",
+  VENDOR_AUTH_REQUEST_01: "vendor-auth-request-01",
+  VENDOR_AUTH_RESPONSE_01: "vendor-auth-response-01",
+  CUSTOMER_AUTH_REQUEST_01: "customer-auth-request-01",
+  CUSTOMER_AUTH_RESPONSE_01: "customer-auth-response-01",
+  MERCHANT_REQUEST_ORDER: "merchant-request-order",
+  MERCHANT_RESPONSE_ORDER: "merchant-response-order",
+  MERCHANT_AUTH_REQUEST_CHAT: "merchant-auth-request-chat",
+  MERCHANT_AUTH_RESPONSE_CHAT: "merchant-auth-response-chat",
+  MERCHANT_AUTH_REQUEST: "merchant-auth-request",
+  MERCHANT_AUTH_RESPONSE: "merchant-auth-response",
+  MERCHANT_REQUEST_ORDER_02: "merchant-request-order-02",
+  MERCHANT_RESPONSE_ORDER_02: "merchant-response-order-02",
+  PRODUCT_CREATED: 'product-created'
+};

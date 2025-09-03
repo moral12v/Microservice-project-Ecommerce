@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package shippingservice;
+
+service ShippingService {
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+}
+
+message CreateTaskRequest {
+  OrderDetails orderDetails = 1;
+  PickupDetails pickupDetails = 2;
+  DropDetails dropDetails = 3;
+  repeated OrderItem orderItems = 4;
+  string traceId = 5;
+  string spanId = 6;
+}
+
+message CreateTaskResponse {
+  string taskId = 1;
+  string status = 2;
+  string message = 3;
+  string trackLink = 4;
+  string traceId = 5;
+  string spanId = 6;
+}
+
+message OrderDetails {
+  string orderId = 1;
+  string userId = 2;
+  string merchantId = 3;
+  float subTotalAmount = 4;
+  float totalAmount = 5;
+  float shippingAmount = 6;
+  float gst = 7;
+  float discount = 8;
+  string status = 9;
+  string vendor_order_id = 10; 
+  float order_total = 11;
+  string order_source = 12; 
+}
+
+message PickupDetails {
+  string name = 1;  
+  string contact_number = 2;  
+  string address = 3;  
+  string city = 4;  
+  double latitude = 5;  
+  double longitude = 6;  
+}
+
+message DropDetails {
+  string name = 1;  
+  string contact_number = 2;  
+  string address = 3;  
+  string city = 4;  
+  double latitude = 5;  
+  double longitude = 6;  
+}
+
+message OrderItem {
+  string productId = 1;
+  string productName = 2;
+  int32 quantity = 3;
+  float sellingPrice = 4;
+  float actualPrice = 5;
+  repeated Addon addons = 6;
+}
+
+message Addon {
+  string groupName = 1;
+  repeated Choice choices = 2;
+}
+
+message Choice {
+  string choiceName = 1;
+  float choicePrice = 2;
+}

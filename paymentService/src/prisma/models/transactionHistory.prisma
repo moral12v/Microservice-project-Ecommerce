@@ -1,0 +1,18 @@
+
+model transactionHistory {
+  id                   Int       @id @default(autoincrement())  
+  userId               String
+  amount               Float
+  currency             String   
+  type                 String
+  status               String
+  paymentMethod        String
+  referenceId          String
+  description          String
+  merchantId           String
+  orderId              Int
+  aggregatorStatus     String   @default("unpaid")
+  paymentOrderId       String
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}

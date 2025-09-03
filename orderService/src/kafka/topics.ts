@@ -1,0 +1,18 @@
+export const KAFKA_TOPICS = {
+  CUSTOMER_AUTH_REQUEST_ORDER: "customer-auth-request-order",
+  CUSTOMER_AUTH_RESPONSE_ORDER: "customer-auth-response-order",
+  ORDER_CREATED: "order-created",
+  PAYMENT_INITIATED: "payment-initiated",
+  PAYMENT_FAILED: "payment-failed",
+  CART_REQUEST: "cart-request",
+  CART_RESPONE: "cart-response",
+  ORDER_PAYMENT_STATUS_UPDATED: "order-payment-status-updated",
+  CART_DELETE_REQUEST: "cart_delete_request",
+  CART_DELETE_RESPONSE: "cart_delete_response",
+  MERCHANT_REQUEST_ORDER: "merchant-request-order",
+  MERCHANT_RESPONSE_ORDER: "merchant-response-order",
+  MERCHANT_REQUEST_ORDER_02: "merchant-request-order-02",
+  MERCHANT_RESPONSE_ORDER_02: "merchant-response-order-02",
+  VENDOR_AUTH_REQUEST_03: "vendor-auth-request-03",
+  VENDOR_AUTH_RESPONSE_03: "vendor-auth-response-03",
+};

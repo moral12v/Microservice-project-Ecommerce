@@ -1,0 +1,86 @@
+trigger:
+  - dev-server
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  NodeJSVersion: '22.4.0'  # Use a valid Node.js version
+
+steps:
+  # Step 1: Install Node.js
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '$(NodeJSVersion)'
+    displayName: 'Install Node.js'
+
+  # Step 2: Install NPM dependencies
+  - script: |
+      npm install
+    displayName: 'Install NPM dependencies'
+
+  # Step 3: Build the Node.js application
+  - script: |
+      npm run build --verbose
+    displayName: 'Build the Node.js application'
+
+  # Ensure package directory exists
+  - script: |
+      mkdir -p "$(Build.ArtifactStagingDirectory)/package"
+    displayName: 'Ensure package directory exists'
+
+  # Step 4: Prepare the deployment package
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: |
+        build/**
+        package.json
+        package-lock.json
+        tsconfig.json
+        node_modules/**
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/package'
+    displayName: 'Copy build output to staging directory'
+
+  # Copy appspec.yml and scripts
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: |
+        appspec.yml
+        scripts/**
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/package'
+    displayName: 'Copy appspec.yml and scripts to staging directory'
+  # Set execute permissions on scripts
+  - script: |
+      chmod +x $(Build.ArtifactStagingDirectory)/package/scripts/*.sh
+    displayName: 'Set execute permissions on deployment scripts'
+
+  # List contents after copying files
+  - script: |
+      echo "Contents of $(Build.ArtifactStagingDirectory)/package after copying files:"
+      ls -laR "$(Build.ArtifactStagingDirectory)/package"
+    displayName: 'List package directory contents'
+
+  # Step 5: Create a ZIP archive of the deployment package
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/package'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      verbose: true
+    displayName: 'Archive deployment package'
+
+  # Step 6: Deploy to AWS EC2 using CodeDeploy
+  - task: CodeDeployDeployApplication@1
+    inputs:
+      awsCredentials: 'AWS EC2 Connection'
+      regionName: 'ap-south-1'
+      applicationName: 'CTBServices'
+      deploymentGroupName: 'MyCTBServicesDG'
+      deploymentRevisionSource: 'workspace'
+      revisionBundle: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      bucketName: 'ctb-devops'   # Replace with your S3 bucket name
+      fileExistsBehavior: 'OVERWRITE'
+    displayName: 'Deploy application to AWS EC2 using CodeDeploy'

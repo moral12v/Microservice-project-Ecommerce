@@ -1,0 +1,16 @@
+
+model TransactionHistory {
+  id                   Int       @id @default(autoincrement())
+  transactionId        String   
+  amountPaid           Float
+  planPrice            Float
+  gstAmount            Float
+  paymentRefId         String   
+  userId               Int
+  userType             Boolean
+  subscriptionStartDate DateTime
+  subscriptionEndDate   DateTime
+  planId               String   
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}

@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package order;
+
+service OrderService {
+  rpc OrderDetails (OrderDetailsRequest) returns (OrderDetailsResponse);
+}
+
+message OrderDetailsRequest {
+  string orderId = 1;
+  string traceId = 2;
+  string spanId = 3;
+}
+
+message OrderDetailsResponse {
+  bool success = 1;
+  string message = 2;
+  OrderData order = 3;
+  string traceId = 4;
+  string spanId = 5;
+}
+
+message OrderData {
+  string _id = 1;
+  OrderStatus orderStatus = 2;
+  MerchantData merchantDetails = 3;
+  CustomerData customerDetails = 4;
+  AddressData addressDetails = 5;
+  DeliveryData deliveryTypeDetails = 6;
+  repeated OrderItem orderItems = 7;
+}
+
+message OrderStatus {
+  int32 id = 1;
+  string name = 2;
+  string image = 3;
+}
+
+message OrderItem {
+  int32 id = 1;
+  string orderId = 2;
+  string productId = 3;
+  string productName = 4;
+  int32 quantity = 5;
+  double sellingPrice = 6;
+  double actualPrice = 7;
+  double tax = 8;
+  double packagingCharge = 9;
+  string createdAt = 10;
+  string updatedAt = 11;
+  repeated Addon addons = 12;
+}
+
+message Addon {
+  int32 id = 1;
+  int32 orderItemId = 2;
+  string groupName = 3;
+  repeated AddonChoice choices = 4;
+}
+
+message AddonChoice {
+  string choiceName = 1;
+  double choicePrice = 2;
+}
+
+message MerchantData {
+  string _id = 1;
+  string name = 2;
+  string mobile = 3;
+  string email = 4;
+  string imgUrl = 5;
+  string pincode = 6;
+  string area = 7;
+  string city = 8;
+  string state = 9;
+  string country = 10;
+  Location location = 11;
+}
+
+message Location {
+  string type = 1;
+  repeated double coordinates = 2;
+}
+
+message CustomerData {
+  string _id = 1;
+  string name = 2;
+  string mobile = 3;
+}
+
+message AddressData {
+  string _id = 1;
+  string addType = 2;
+  string add1 = 3;
+  string city = 4;
+  string state = 5;
+  string country = 6;
+  string mobile = 7;
+  string zipcode = 8;
+}
+
+message DeliveryData {
+  string _id = 1;
+  string name = 2;
+  bool isActive = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
