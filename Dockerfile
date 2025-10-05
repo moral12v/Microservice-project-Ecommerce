@@ -13,6 +13,9 @@ COPY package.json ./
 # based exactly on package-lock.json.
 RUN npm install
 
+# ADD THIS LINE TO COMPILE YOUR TYPESCRIPT
+RUN npm run build
+
 # Copy the rest of your application code
 COPY . .
 
