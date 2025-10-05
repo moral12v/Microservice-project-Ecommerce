@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 
 # Install dependencies. We use 'npm ci' for clean, reproducible installs 
 # based exactly on package-lock.json.
-RUN npm ci
+RUN npm install
 
 # Copy the rest of your application code
 COPY . .
