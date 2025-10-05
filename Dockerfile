@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy dependency manifest files first
 # This ensures Docker can use a cache layer for 'npm install'
 # unless package.json or package-lock.json changes.
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 # Install dependencies. We use 'npm ci' for clean, reproducible installs 
 # based exactly on package-lock.json.
