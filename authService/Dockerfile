@@ -5,10 +5,10 @@ WORKDIR /app
 
 # Copy service-specific package files
 # (Assuming package-lock.json exists inside authService now)
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 # Install dependencies and build the code
-RUN npm ci --omit=dev 
+RUN npm install 
 RUN npm run build 
 
 # Copy the rest of the application code
